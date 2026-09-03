@@ -37,6 +37,12 @@
       const isOpen = mobileMenu?.classList.contains('open');
       setMenu(!isOpen);
     });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu?.classList.contains('open')) {
+        setMenu(false);
+        menuBtn.focus();
+      }
+    });
   }
   $$('.m-link').forEach((a) => a.addEventListener('click', () => setMenu(false)));
 
@@ -57,7 +63,10 @@
       if (!dropdown.contains(e.target)) toggleDropdown(false);
     });
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') toggleDropdown(false);
+      if (e.key === 'Escape' && dropdown.classList.contains('open')) {
+        toggleDropdown(false);
+        trigger.focus();
+      }
     });
   }
 
@@ -78,7 +87,10 @@
       if (!mobileDropdown.contains(e.target)) toggleMobileDropdown(false);
     });
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') toggleMobileDropdown(false);
+      if (e.key === 'Escape' && mobileDropdown.classList.contains('open')) {
+        toggleMobileDropdown(false);
+        mobileTrigger.focus();
+      }
     });
   }
 
